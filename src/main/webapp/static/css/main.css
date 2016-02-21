@@ -1,0 +1,60 @@
+body{
+	background: #DCDCDD;
+	color: #46494C;
+	font-family: Arial;
+}
+p{
+	color: #46494C;
+}
+a{
+	color: #E63946;
+}
+header{
+	position: relative;
+	height: 170px;
+	border-bottom: 1px solid #DDF;
+	box-shadow: 0px 0px 14px #000;
+	background: #05668D;
+	margin: 0 0 10px;
+}
+.logo{
+    position: absolute;
+    top: 17px;
+    left: 17px;
+}
+
+nav{
+    float: left;
+    margin-left: 150px;
+    
+}
+nav li{
+	display: table-cell;
+	height:  60px;
+	vertical-align: middle;
+}
+nav li a{
+	color: darkgrey;
+	text-decoration: none;
+	padding: 0 20px;
+	text-transform: uppercase;
+	display: inline-block;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #fff;
+}
+nav ul ul{
+	display: none;
+}
+.logo a{
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 24px;
+	font-family: initial;
+}
+
+main {
+    padding: 0 10px;
+}

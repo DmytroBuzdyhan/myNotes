@@ -1,14 +1,33 @@
 apply plugin: 'war'
-apply plugin: 'jetty'
+apply plugin: 'com.bmuschko.tomcat'
+
+ext {
+    springVersion = "4.1.6.RELEASE"
+    tomcatVersion= "7.0.59"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
+    }
+}
 
 dependencies{
-    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+    compile "org.springframework:spring-webmvc:${springVersion}"
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}",
+             'javax.servlet:jstl:1.2'
 }
 
 repositories {
     mavenCentral()
 }
 
-jettyRunWar{
+tomcat {
     httpPort = 8888
 }
