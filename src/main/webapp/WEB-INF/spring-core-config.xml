@@ -17,14 +17,13 @@
 			      p:url="${db.url}" p:username="${db.username}" p:password="${db.password}"/>
 		</property>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="true"/>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 		</property>
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.naming-strategy">${hibernate.naming-strategy}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 			</props>
 		</property>
 		<property name="packagesToScan" value="data.entity"/>

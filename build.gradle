@@ -23,7 +23,7 @@ buildscript {
 dependencies{
 	compile "org.springframework:spring-webmvc:${springVersion}",
 			'org.springframework.data:spring-data-jpa:1.9.0.RELEASE',
-			'org.springframework.data:spring-data-commons-core:1.1.0.RELEASE',
+			'org.springframework.data:spring-data-commons:1.11.0.RELEASE',
 			'org.hibernate:hibernate-core:5.1.0.Final',
 			'org.hibernate:hibernate-entitymanager:5.1.0.Final',
 			'javax.persistence:persistence-api:1.0',
