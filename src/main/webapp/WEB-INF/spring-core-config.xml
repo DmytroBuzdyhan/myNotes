@@ -2,37 +2,27 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd
-                           http://www.springframework.org/schema/data/jpa
-                           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-                           http://www.springframework.org/schema/data/repository
-                           http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                           http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd">
 
 	<jpa:repositories base-package="data.repositories" />
+	<context:property-placeholder location="classpath:db.properties,classpath:hibernate.properties"/>
 
-	<context:property-placeholder location="classpath:jdbc.properties"/>
-
-	<bean id="jdbcDatasource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="${db.driver}"/>
-		<property name="url" value="${db.url}"/>
-		<property name="username" value="${db.username}"/>
-		<property name="password" value="${db.password}"/>
-	</bean>
-
-	<bean id="hibernateJpaVendorAdapter"
-	      class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-
-	<bean id="entityManagerFactory"
-	      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="jdbcDatasource"/>
-		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource">
+			<bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource" p:driverClass="${db.driver}"
+			      p:url="${db.url}" p:username="${db.username}" p:password="${db.password}"/>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="true"/>
+		</property>
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+				<prop key="hibernate.naming-strategy">${hibernate.naming-strategy}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 			</props>
@@ -42,9 +32,5 @@
 		<property name="validationMode" value="NONE"/>
 	</bean>
 
-	<bean id="transactionManager"
-	      class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
-	</bean>
-
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
 </beans>
