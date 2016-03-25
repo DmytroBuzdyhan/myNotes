@@ -1,10 +1,11 @@
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="cf" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 	<title>My notes</title>
-	<link href="<c:url value="/resources/css/reset.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+	<link href="<cf:url value="/resources/css/reset.css" />" rel="stylesheet">
+	<link href="<cf:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
 	<section class="wrapper">
@@ -38,7 +39,7 @@
 			</nav>
 		</header>
 		<main>
-			<p>There are list of notes</p>
+			<h1>User name: ${name}</h1>
 		</main>
 		<footer>
 			<p>.........111</p>
