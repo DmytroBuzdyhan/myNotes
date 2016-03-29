@@ -1,6 +1,8 @@
 package controllers;
 
+import data.entity.Topic;
 import data.entity.User;
+import data.repositories.TopicRepository;
 import data.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,13 +23,12 @@ public class Main {
     static Logger log = LoggerFactory.getLogger(Main.class);
 
     @Autowired
-    UserRepository userRepository;
+    TopicRepository topicRepository;
 
     @RequestMapping(value = "/", method= RequestMethod.GET)
     public String getMainPage(Map<String, Object> model){
-        User user = userRepository.getUser("Kyiv");
-        model.put("name", user.getName());
-        log.info("Name: " + user.getName());
+        List<Topic> topics = (List<Topic>)topicRepository.findAll();
+        model.put("topics", topics);
         return "index";
     }
 }

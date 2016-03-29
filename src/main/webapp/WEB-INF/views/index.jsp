@@ -9,34 +9,18 @@
 </head>
 <body>
 	<section class="wrapper">
-		<header>
-			<span class="logo">
-				<a href="/">My Notes</a>
-			</span>
-			<nav>
-				<ul>
-					<li>
-						<a href="">Java</a>
-						<ul>
+		<header class="tool-bar">
+			<div class="tool-bar-wrapper">
+				<nav>
+					<ul>
+						<c:forEach var="topic" items="${topics}">
 							<li>
-								<a href="">Spring</a>
+								<a href="">${topic.name}</a>
 							</li>
-							<li>
-								<a href="">WebServers</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="">Javascript</a>
-					</li>
-					<li>
-						<a href="">Html</a>
-					</li>
-					<li>
-						<a href="">Css</a>
-					</li>
-				</ul>
-			</nav>
+						</c:forEach>
+					</ul>
+				</nav>
+			</div>
 		</header>
 		<main>
 			<h1>User name: ${name}</h1>
